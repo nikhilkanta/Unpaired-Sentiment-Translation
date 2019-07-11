@@ -177,7 +177,7 @@ class Classification(object):
                 self.y_pred_auc = tf.nn.softmax(logits)
 
                 batch_nums = tf.range(0, hps.batch_size)
-                indices = tf.stack([batch_nums, self._target_batch], axis=1)  # batch 2  # 长度一点要-1
+                indices = tf.stack([batch_nums, self._target_batch], axis=1)  # batch 2
                 self.y_pred_auc = tf.gather_nd(self.y_pred_auc, indices)  # batch dim
 
             loss = tf.nn.sparse_softmax_cross_entropy_with_logits(labels = self._target_batch, logits = logits)
